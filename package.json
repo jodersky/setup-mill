@@ -1,0 +1,11 @@
+{
+  "name": "setup-mill",
+  "version": "0.1.0",
+  "main": "setup.js",
+  "dependencies": {
+    "@actions/core": "^1.1.1",
+    "@actions/io": "^1.0.1",
+    "@actions/exec": "^1.0.1",
+    "@actions/tool-cache": "^1.1.1"
+  }
+}

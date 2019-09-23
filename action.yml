@@ -1,0 +1,11 @@
+name: 'Set up Mill'
+description: 'Setup a Mill environment for Scala projects.'
+author: 'Jakob Odersky'
+inputs:
+  mill-version:
+    description: 'version of mill to use'
+    required: false
+    default: '0.5.1'
+runs:
+  using: 'node12'
+  main: 'setup.js'

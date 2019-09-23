@@ -1,0 +1,19 @@
+name: "CI"
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ./
+      name: "Set up Mill"
+      with:
+        mill-version: 0.5.1
+    - name: "Run Mill"
+      run: mill version
+
