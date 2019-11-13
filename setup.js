@@ -7,22 +7,25 @@ const os = require('os');
 const path = require('path');
 
 async function run() {
+
+  const millPath = `${process.env["HOME"]}/mill`;
+
   try {
     const millVersion = core.getInput('mill-version');
     
-    var millPath = tc.find('mill', millVersion);
-    if (!millPath) {
+    var cachedMillPath = tc.find('mill', millVersion);
+    if (!cachedMillPath) {
       core.info('no cached version found');
       core.info('downloading mill');
       const downloadPath = await tc.downloadTool(`https://github.com/lihaoyi/mill/releases/download/${millVersion}/${millVersion}-assembly`);
-      await io.mkdirP('mill');
-      await io.cp(downloadPath, 'mill/mill', { force: true });
-      fs.chmodSync('mill/mill', '0755')
-      millPath = await tc.cacheDir('mill', 'mill', millVersion);
+      await io.mkdirP(millPath);
+      await io.cp(downloadPath, `${millPath}/mill`, { force: true });
+      fs.chmodSync(`${millPath}/mill`, '0755')
+      cachedMillPath = await tc.cacheDir(millPath, 'mill', millVersion);
     } else {
-      core.info(`using cached version of mill: ${millPath}`);
+      core.info(`using cached version of mill: ${cachedMillPath}`);
     }
-    core.addPath(millPath);
+    core.addPath(cachedMillPath);
 
     // warm up mill, this populates ~/.mill
     // TODO: once caching across workflow invocations is available, this dorectory should be cached too
