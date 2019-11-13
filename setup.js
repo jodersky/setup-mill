@@ -16,7 +16,7 @@ async function run() {
       core.info('downloading mill');
       const downloadPath = await tc.downloadTool(`https://github.com/lihaoyi/mill/releases/download/${millVersion}/${millVersion}-assembly`);
       await io.mkdirP('mill');
-      await io.cp(downloadPath, 'mill/mill');
+      await io.cp(downloadPath, 'mill/mill', { force: true });
       fs.chmodSync('mill/mill', '0755')
       millPath = await tc.cacheDir('mill', 'mill', millVersion);
     } else {
