@@ -8,7 +8,7 @@ const path = require('path');
 
 async function run() {
 
-  const millPath = `${process.env["HOME"]}/mill`;
+  const millPath = `.mill-bin`;
 
   try {
     const millVersion = core.getInput('mill-version');
