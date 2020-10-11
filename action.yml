@@ -5,10 +5,10 @@ inputs:
   mill-version:
     description: 'version of mill to use'
     required: false
-    default: '0.5.1'
+    default: '0.8.0'
 runs:
   using: 'node12'
   main: 'setup.js'
 branding:
-  icon: 'box'  
+  icon: 'box'
   color: 'red'
