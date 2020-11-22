@@ -13,7 +13,7 @@ jobs:
     - uses: ./
       name: "Set up Mill"
       with:
-        mill-version: 0.5.1
+        mill-version: 0.8.0
     - name: "Run Mill"
       run: mill version
 
