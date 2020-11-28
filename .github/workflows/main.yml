@@ -7,7 +7,17 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+        - name: Windows
+          os: windows-latest
+          mill: 'mill --no-server'
+        - name: Linux
+          os: ubuntu-latest
+          mill: 'mill'
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v1
     - uses: ./
@@ -15,5 +25,5 @@ jobs:
       with:
         mill-version: 0.8.0
     - name: "Run Mill"
-      run: mill version
+      run: ${{ matrix.mill }} version
 
